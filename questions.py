@@ -1,4 +1,5 @@
 import random
+
 words = [
 "python",
 "programa",
@@ -21,10 +22,10 @@ while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
     progress = ""
     for letter in word:
-    if letter in guessed:
-        progress += letter + " "
-    else:
-        progress += "_ "
+        if letter in guessed:
+            progress += letter + " "
+        else:
+            progress += "_ "
     print(progress)
 
     # Verificar si el jugador ya adivinó la palabra completa
@@ -35,8 +36,14 @@ while attempts > 0:
     print(f"Intentos restantes: {attempts}")
     print(f"Letras usadas: {', '.join(guessed)}")
 
-    letter = input("Ingresá una letra: ")
+    # Si es mayúscula la convierto en minúscula para no extender la condicion en (1)
+    letter = input("Ingresá una letra: ").lower()
 
+    # Corregimos el bug (1)
+    if len(letter) > 1 or letter < "a" or letter > "z" :
+        print("Entrada no válida!")
+        continue
+    
     if letter in guessed:
         print("Ya usaste esa letra.")
     elif letter in word:
