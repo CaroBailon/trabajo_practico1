@@ -1,22 +1,25 @@
 import random
 
-words = [
-"python",
-"programa",
-"variable",
-"funcion",
-"bucle",
-"cadena",
-"entero",
-"lista",
-]
+# Agrupamos las palabras por categoria
 
-word = random.choice(words)
-guessed = []
-attempts = 6
+categories = {
+    "Programacion": ["python", "variable", "bucle", "lista", "funcion"],
+    "Frutas": ["manzana", "banana", "frutilla", "naranja", "cereza"],
+    "Paises": ["argentina", "uruguay", "brasil", "chile", "españa"]
+}
+
+# Agrego la opcion de mostrar las categorias para que el jugador pueda elegir
 
 print("¡Bienvenido al Ahorcado!")
 print()
+
+print("Categorías disponibles:", ", ".join(categories.keys()))
+selection = input("Elige una categoria : ").capitalize()
+word= random.choice(categories[selection])
+print(f"Elegiste la categoria {selection}!")
+
+guessed = []
+attempts = 6
 
 # Agrego variable puntaje para contabilizar los puntos
 score = 0
