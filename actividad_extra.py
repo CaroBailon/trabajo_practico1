@@ -41,16 +41,21 @@ while True:
             continue 
 
         # Pido el marcador
-        marker = input("\n\tIngrese el marcador del partido (formato: local - visitante): ")
-        try:
-
-            # Separo el marcador en goles locales y visitantes usando split y convierto a enteros para poder comparar
-            goals = marker.split(" - ") 
-            goals_local = int(goals[0])
-            goals_visitor = int(goals[1])
-        except:
-            print("\n\tError! Formato de marcador inválido. Usar 'goles - goles'.")
+        marker = input("\tIngrese resultado (ej: 4 - 2): ")
+        
+        # Cambio de formato el marcador para obtener los goles de cada equipo. Verifico que el formato sea correcto y que los goles sean números enteros.
+        if " - " in marker:
+            goals = marker.split(" - ")
+            if len(goals) == 2 and goals[0].strip().isdigit() and goals[1].strip().isdigit():
+                goals_local = int(goals[0])
+                goals_visitor = int(goals[1])
+            else:
+                print("\n\tError! Los goles deben ser números enteros (ej: 4 - 2).")
+                continue
+        else:
+            print("\n\tError! Formato inválido. Usar 'goles - goles'.")
             continue
+    
 
         # Actualizo la tabla de posiciones según el resultado del partido
         if goals_local > goals_visitor:
